@@ -22,7 +22,6 @@
 
 | Column                 | Type       | Options                        |
 |-------------------------------------|--------------------------------|
-| image                  | image      | null: false                    |
 | name                   | string     | null: false                    |
 | info                   | text       | null: false                    |
 | category_id            | integer    | null: false                    |
@@ -61,7 +60,7 @@
 | address       | string     | null: false                    |
 | address_sub   | string     | null: false                    |
 | phone_number  | string     | null: false                    |
-| order         | reference  | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 
