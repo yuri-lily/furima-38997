@@ -22,15 +22,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      #       it 'nameが41文字以上では登録できない' do
-      #       end
       it 'infoが空では出品できない' do
         @item.info = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
-      #       it 'infoが1,001字以上では登録できない' do
-      #       end
       it 'category_idが1では出品できない' do
         @item.category_id = '1'
         @item.valid?
@@ -56,10 +52,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
-      #       it 'priceは空では登録できない' do
-      #         @item.price = ''
-      #         @item.valid?
-      #         expect(@item.errors.full_messages).to include("")
+      it 'priceは空では登録できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
       it 'priceが299円以下では出品できない' do
         @item.price = '299'
         @item.valid?
