@@ -8,7 +8,6 @@ RSpec.describe OrderAddress, type: :model do
   end
 
   describe '配送先の保存' do
-    
     context '内容に問題がない場合' do
       it '全ての値が正しい入力されていれば保存できること' do
         expect(@order_address).to be_valid
@@ -18,7 +17,6 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
     end
-
     context '内容に問題がある場合' do
       it 'postal_cadeが空では保存できないこと' do
         @order_address.postal_cade = ''
@@ -54,12 +52,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberは10桁未満では保存出来ないこと' do
         @order_address.phone_number = '0000'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
       it 'phone_numberは12桁以上では保存できないこと' do
         @order_address.phone_number = '000000000000'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
       it 'phone_numberは半角数字以外では保存できないこと' do
         @order_address.phone_number = 'aaaaaaaaaaa'
