@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
       pay_item
       @order_address.save
       redirect_to root_path
-    else 
+    else
       render :index
     end
   end
@@ -22,13 +22,15 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_address).permit(:postal_cade, :prefecture_id, :city, :address, :address_sub, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    params.require(:order_address).permit(:postal_cade, :prefecture_id, :city, :address, :address_sub, :phone_number).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def set_item
     @item = Item.find(params[:item_id])
   end
-  
+
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
@@ -39,15 +41,14 @@ class OrdersController < ApplicationController
   end
 
   def sold_out
-    if current_user.id != @item.user_id && @item.order != nil
-      redirect_to root_path
-    end
+    return unless current_user.id != @item.user_id && !@item.order.nil?
+
+    redirect_to root_path
   end
 
   def move_to_root_path
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
+    return unless current_user.id == @item.user_id
 
+    redirect_to root_path
+  end
 end
