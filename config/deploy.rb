@@ -5,13 +5,13 @@ lock '3.17.3'
 set :application, 'furima-38997'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url,  'git@github.com:yuri-lily/furima-38997.git'
+set :repo_url,  'git@github.com:yuri-lilt/furima-38997.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.6.5' #カリキュラム通りに進めた場合、’2.6.5’ です
+set :rbenv_ruby, '2.6.5'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
@@ -30,4 +30,4 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
-end
+end                                  
