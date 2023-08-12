@@ -371,6 +371,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
+  date (= 3.3.3)
   devise
   factory_bot_rails
   faker
@@ -401,4 +402,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.1.4
+   2.4.18
